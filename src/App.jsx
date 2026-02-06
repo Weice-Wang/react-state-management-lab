@@ -88,16 +88,33 @@ const App = () => {
     },
   ]);
 
-  const handleAddFighter = (ZombieFighter) => {
-    setTeam([...team, ZombieFighter]);
-    setZombieFighters(
-      zombieFighters.filter((zombie) => zombie.id !== ZombieFighter.id),
-    );
+  const handleAddFighter = (zombieFighter) => {
+    if (money >= zombieFighter.price) {
+      setTeam([...team, zombieFighter]);
+      setZombieFighters(
+        zombieFighters.filter((zombie) => zombie.id !== zombieFighter.id),
+      );
+      setMoney(money - zombieFighter.price);
+    } else {
+      setMoney(`not enough money`);
+    }
   };
+
   return (
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
+      <section>
+        {team.length === 0 ? (
+          <p>Pick your team Member</p>
+        ) : (
+          team.map((zombieFighter) => (
+            <li key={zombieFighter.id}>
+              <ZombieFightersList {...zombieFighter} />
+            </li>
+          ))
+        )}
+      </section>
       <section>
         <ul>
           {zombieFighters.map((zombieFighter) => (
