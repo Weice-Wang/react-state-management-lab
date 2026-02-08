@@ -100,10 +100,21 @@ const App = () => {
     }
   };
 
+  const totalStrength = team.reduce(
+    (total, fighter) => total + fighter.strength,
+    0,
+  );
+  const totalAgility = team.reduce(
+    (total, fighter) => total + fighter.agility,
+    0,
+  );
+
   return (
     <>
       <h1>Zombie Fighters</h1>
       <h2>Money: {money}</h2>
+      <h2>Total Strength: {totalStrength} </h2>
+      <h2>Total Agility: {totalAgility} </h2>
       <section>
         {team.length === 0 ? (
           <p>Pick your team Member</p>
