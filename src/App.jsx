@@ -12,7 +12,7 @@ const App = () => {
       price: 12,
       strength: 6,
       agility: 4,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/0c2d6b.png",
+      img: "/assets/survivar.png",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ const App = () => {
       price: 10,
       strength: 5,
       agility: 5,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/033a16.png",
+      img: "/assets/scavenger.png",
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ const App = () => {
       price: 18,
       strength: 7,
       agility: 8,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/262c36.png",
+      img: "/assets/shadow.png",
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ const App = () => {
       price: 14,
       strength: 7,
       agility: 6,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/3c1e70.png",
+      img: "/assets/tracker.png",
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ const App = () => {
       price: 20,
       strength: 6,
       agility: 8,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/4b2900.png",
+      img: "/assets/sharp.png",
     },
     {
       id: 6,
@@ -52,7 +52,7 @@ const App = () => {
       price: 15,
       strength: 5,
       agility: 7,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/5a1e02.png",
+      img: "/assets/medic.png",
     },
     {
       id: 7,
@@ -60,7 +60,7 @@ const App = () => {
       price: 16,
       strength: 6,
       agility: 5,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/5e103e.png",
+      img: "/assets/engineer.png",
     },
     {
       id: 8,
@@ -68,7 +68,7 @@ const App = () => {
       price: 11,
       strength: 8,
       agility: 3,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/67060c.png",
+      img: "/assets/brawler.png",
     },
     {
       id: 9,
@@ -76,7 +76,7 @@ const App = () => {
       price: 17,
       strength: 5,
       agility: 9,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/ac3220.png",
+      img: "/assets/Infiltrator.png",
     },
     {
       id: 10,
@@ -84,7 +84,7 @@ const App = () => {
       price: 22,
       strength: 7,
       agility: 6,
-      img: "https://pages.git.generalassemb.ly/modular-curriculum-all-courses/react-state-management-lab/assets/e41f26.png",
+      img: "/assets/leader.png",
     },
   ]);
 
@@ -109,6 +109,12 @@ const App = () => {
     0,
   );
 
+  const handleRemoveFighter = (zombieFighter) => {
+    setTeam(team.filter((zombie) => zombie.id !== zombieFighter.id));
+    setZombieFighters([...zombieFighters, zombieFighter]);
+    setMoney(money + zombieFighter.price);
+  };
+
   return (
     <>
       <h1>Zombie Fighters</h1>
@@ -122,6 +128,9 @@ const App = () => {
           team.map((zombieFighter) => (
             <li key={zombieFighter.id}>
               <ZombieFightersList {...zombieFighter} />
+              <button onClick={() => handleRemoveFighter(zombieFighter)}>
+                Remove
+              </button>
             </li>
           ))
         )}
